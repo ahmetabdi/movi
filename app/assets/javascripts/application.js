@@ -15,3 +15,20 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+  $("#owl-demo").owlCarousel({
+    items : 4,
+    lazyLoad : true,
+    navigation : true,
+    pagination: true,
+    paginationNumbers: false
+  });
+});
+
+// "owl.prev" //Go to previous
+// "owl.next" //Go to next
+// "owl.play" //Autoplay, also this event accept autoPlay speed as second parameter
+// "owl.stop" //Stop
+// "owl.goTo" //goTo provided item
+// "owl.jumpTo" //jumpTo provided item. Without slide animation.

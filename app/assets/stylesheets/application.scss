@@ -1,4 +1,16 @@
 @import "bootstrap";
+@import "owl.carousel";
+@import "owl.theme";
+@import "owl.transitions";
+
+#owl-demo .item{
+  margin: 3px;
+}
+#owl-demo .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 .navbar {
   background-color: #000;
