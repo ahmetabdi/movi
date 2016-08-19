@@ -124,13 +124,15 @@
             <div class="year">2016</div>
           </div>
         </div>
+        <% Movie.all.each do |movie| %>
         <div class="col-xs-6 col-sm-2 box">
-          <img src="http://placehold.it/200x300" class="img-fluid">
+          <img src="<%= movie.poster_image %>" class="img-fluid">
           <div class="info-box">
-            <div class="title">The Night Of</div>
+            <div class="title"><%= movie.title %></div>
             <div class="year">2016</div>
           </div>
         </div>
+        <% end %>
       </div>
     </div>
   </div>

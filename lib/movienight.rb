@@ -4,6 +4,8 @@ require 'nokogiri'
 
 class MovieNight
   def self.run
+    MovieLink.destroy_all
+    Movie.destroy_all
     initial_html = Net::HTTP.get(URI('http://movienight.ws'))
     initial_html_doc = Nokogiri::HTML(initial_html)
 
@@ -11,7 +13,7 @@ class MovieNight
 
     movies.each do |movie|
       title = movie.at_css('img')['alt']
-      image = movie.at_css('img')['src']
+      image_url = movie.at_css('img')['src']
       url_location = movie.at_css('a')['href']
       rating = movie.at_css('.imdb').text.gsub(' ', '')
 
@@ -24,7 +26,7 @@ class MovieNight
       # Only continue if the movie has an iframe and a title
       if title && iframe_url
         if Movie.find_by_title(title).nil?
-          Movie.create(title: title, poster_image: image, url_location: url_location, rating: rating)
+          Movie.create(title: title, remote_poster_image_url: image_url, url_location: url_location, rating: rating)
         end
 
         if MovieLink.find_by_link(iframe_url).nil?
