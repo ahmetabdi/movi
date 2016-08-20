@@ -6,11 +6,21 @@ class MovieNight
   def self.run
     MovieLink.destroy_all
     Movie.destroy_all
-    initial_html = Net::HTTP.get(URI('http://movienight.ws'))
+
+    find_by_url("http://movienight.ws/")
+    2..52 do |i|
+      find_by_url("http://movienight.ws/page/#{i}/")
+    end
+  end
+
+  def self.find_by_url(url)
+    initial_html = Net::HTTP.get(URI(url))
     initial_html_doc = Nokogiri::HTML(initial_html)
-
     movies = initial_html_doc.css('#box_movies .movie')
+    fetch(movies)
+  end
 
+  def self.fetch(movies)
     movies.each do |movie|
       title = movie.at_css('img')['alt']
       image_url = movie.at_css('img')['src']
@@ -37,5 +47,3 @@ class MovieNight
     end
   end
 end
-
-
