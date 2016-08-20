@@ -4,7 +4,9 @@ class MoviePosterImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
+
+  process quality: 80
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -14,6 +16,14 @@ class MoviePosterImageUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  version :admin_thumb do
+    process resize_to_fit: [150, 150]
+  end
+
+  version :portrait do
+    process resize_to_fill: [200, 300]
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -48,4 +58,16 @@ class MoviePosterImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+end
+
+module CarrierWave
+  module MiniMagick
+    def quality(percentage)
+      manipulate! do |img|
+        img.quality(percentage.to_s)
+        img = yield(img) if block_given?
+        img
+      end
+    end
+  end
 end

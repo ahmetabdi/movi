@@ -1,0 +1,43 @@
+<nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+  <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="navbar-brand" href="#">Project name</a>
+  <div id="navbar">
+    <nav class="nav navbar-nav pull-xs-left">
+      <a class="nav-item nav-link" href="#">Movies</a>
+      <a class="nav-item nav-link" href="#">TV Shows</a>
+      <a class="nav-item nav-link" href="#">Trending</a>
+      <a class="nav-item nav-link" href="#">Ratings</a>
+    </nav>
+    <form class="pull-xs-right">
+      <input type="text" class="form-control" placeholder="Search...">
+    </form>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 main">
+      <h1>Movies</h1>
+
+      <% Movie.all.each_slice(6) do |slice| %>
+      <div class="row">
+        <% slice.each do |movie| %>
+        <div class="col-xs-6 col-sm-2 box">
+          <%= link_to movie_path(movie) do %>
+          <img src="<%= movie.poster_image.portrait %>" class="img-fluid">
+          <div class="info-box">
+            <div class="title"><%= movie.title %></div>
+          </div>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

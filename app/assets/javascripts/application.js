@@ -18,11 +18,11 @@
 
 $(document).ready(function() {
   $("#owl-demo").owlCarousel({
-    items : 4,
+    items : 8,
     lazyLoad : true,
-    navigation : true,
-    pagination: true,
-    paginationNumbers: false
+    navigation : false,
+    pagination: false,
+    paginationNumbers: true
   });
 });
 
