@@ -24,7 +24,11 @@ $(document).ready(function() {
     pagination: false,
     paginationNumbers: true
   });
+
+  // $('iframe').iFrameResize( [{options}] );
 });
+
+
 
 // "owl.prev" //Go to previous
 // "owl.next" //Go to next
