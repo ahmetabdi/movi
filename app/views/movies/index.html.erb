@@ -29,7 +29,7 @@
         <% slice.each do |movie| %>
         <div class="col-xs-6 col-sm-2 box">
           <%= link_to movie_path(movie) do %>
-          <img src="<%= movie.poster_image.portrait %>" class="img-fluid">
+          <img src="<%= movie.poster_image %>" class="img-fluid">
           <div class="info-box">
             <div class="title"><%= movie.title %></div>
           </div>

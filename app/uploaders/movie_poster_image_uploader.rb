@@ -7,6 +7,7 @@ class MoviePosterImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   process quality: 80
+  process resize_to_fill: [200, 300]
 
   # Choose what kind of storage to use for this uploader:
   if Rails.env.development?
@@ -23,10 +24,6 @@ class MoviePosterImageUploader < CarrierWave::Uploader::Base
 
   version :admin_thumb do
     process resize_to_fit: [150, 150]
-  end
-
-  version :portrait do
-    process resize_to_fill: [200, 300]
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

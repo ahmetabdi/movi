@@ -70,7 +70,7 @@
                 <% Movie.all.each do |movie| %>
                 <div class="item">
                   <%= link_to movie_path(movie) do %>
-                    <%= image_tag(movie.poster_image.portrait, class: 'lazyOwl') %>
+                    <%= image_tag(movie.poster_image, class: 'lazyOwl') %>
                   <% end %>
                 </div>
                 <% end %>
