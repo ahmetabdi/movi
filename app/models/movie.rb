@@ -4,6 +4,8 @@ class Movie < ApplicationRecord
 
   mount_uploader :poster_image, MoviePosterImageUploader
 
+  has_many :movie_links
+
   private
 
   def should_generate_new_friendly_id?
