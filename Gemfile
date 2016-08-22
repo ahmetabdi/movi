@@ -13,6 +13,8 @@ gem 'nokogiri', '~> 1.6.8'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave-aws', '~> 1.0.1'
+gem 'mini_magick', '~> 4.5.1'
+gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri

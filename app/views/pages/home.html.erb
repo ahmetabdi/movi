@@ -61,78 +61,23 @@
         <div class="container">
           <div class="row">
             <div class="span12">
-
+              <h1>Now Playing</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span12">
               <div id="owl-demo" class="owl-carousel">
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
-                <div class="item"><%= image_tag('owl.jpg', class: 'lazyOwl') %></div>
+                <% Movie.all.each do |movie| %>
+                <div class="item">
+                  <%= link_to movie_path(movie) do %>
+                    <%= image_tag(movie.poster_image.portrait, class: 'lazyOwl') %>
+                  <% end %>
+                </div>
+                <% end %>
               </div>
-
             </div>
           </div>
         </div>
-
-
-      <h1>On deck</h1>
-
-      <div class="row">
-        <div class="col-xs-6 col-sm-2 box">
-          <img src="http://placehold.it/200x300" class="img-fluid">
-          <div class="info-box">
-            <div class="title">The Night Of</div>
-            <div class="year">2016</div>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-2 box">
-          <img src="http://placehold.it/200x300" class="img-fluid">
-          <div class="info-box">
-            <div class="title">The Night Of</div>
-            <div class="year">2016</div>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-2 box">
-          <img src="http://placehold.it/200x300" class="img-fluid">
-          <div class="info-box">
-            <div class="title">The Night Of</div>
-            <div class="year">2016</div>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-2 box">
-          <img src="http://placehold.it/200x300" class="img-fluid">
-          <div class="info-box">
-            <div class="title">The Night Of</div>
-            <div class="year">2016</div>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-2 box">
-          <img src="http://placehold.it/200x300" class="img-fluid">
-          <div class="info-box">
-            <div class="title">The Night Of</div>
-            <div class="year">2016</div>
-          </div>
-        </div>
-        <% Movie.all.each do |movie| %>
-        <div class="col-xs-6 col-sm-2 box">
-          <img src="<%= movie.poster_image %>" class="img-fluid">
-          <div class="info-box">
-            <div class="title"><%= movie.title %></div>
-            <div class="year">2016</div>
-          </div>
-        </div>
-        <% end %>
       </div>
     </div>
   </div>
