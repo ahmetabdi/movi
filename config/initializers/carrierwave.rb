@@ -2,6 +2,7 @@ require 'carrierwave/orm/activerecord'
 
 unless Rails.env.development?
   CarrierWave.configure do |config|
+    config.storage = :aws
     config.fog_credentials = {
       provider:              'AWS',
       aws_access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
