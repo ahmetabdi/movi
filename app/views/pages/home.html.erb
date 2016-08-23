@@ -1,85 +1,22 @@
-<nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
-  <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-    <span class="sr-only">Toggle navigation</span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-  </button>
-  <a class="navbar-brand" href="#">Project name</a>
-  <div id="navbar">
-    <nav class="nav navbar-nav pull-xs-left">
-      <a class="nav-item nav-link" href="#">Movies</a>
-      <a class="nav-item nav-link" href="#">TV Shows</a>
-      <a class="nav-item nav-link" href="#">Trending</a>
-      <a class="nav-item nav-link" href="#">Ratings</a>
-    </nav>
-    <form class="pull-xs-right">
-      <input type="text" class="form-control" placeholder="Search...">
-    </form>
-  </div>
-</nav>
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 col-md-12 main">
-      <h1>Dashboard</h1>
+      <h1>Movies</h1>
 
+      <% Movie.limit(20).each_slice(6) do |slice| %>
       <div class="row">
-        <div class="col-xs-6 col-sm-3 box">
-          <img src="http://placehold.it/350x150" class="img-fluid">
+        <% slice.each do |movie| %>
+        <div class="col-xs-6 col-sm-2 box">
+          <%= link_to movie_path(movie) do %>
+          <img src="<%= movie.poster_image %>" class="img-fluid">
           <div class="info-box">
-            <div class="title">The Night Of</div>
-            <div class="year">2016</div>
+            <div class="title"><%= movie.title %></div>
           </div>
+          <% end %>
         </div>
-        <div class="col-xs-6 col-sm-3 box">
-          <img src="http://placehold.it/350x150" class="img-fluid">
-          <div class="info-box">
-            <div class="title">The Night Of</div>
-            <div class="year">2016</div>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-3 box">
-          <img src="http://placehold.it/350x150" class="img-fluid">
-          <div class="info-box">
-            <div class="title">The Night Of</div>
-            <div class="year">2016</div>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-3 box">
-          <img src="http://placehold.it/350x150" class="img-fluid">
-          <div class="info-box">
-            <div class="title">The Night Of</div>
-            <div class="year">2016</div>
-          </div>
-        </div>
+        <% end %>
       </div>
-
-      <br><br><br>
-      Movies: <%= Movie.all.count %>
-      Links: <%= MovieLink.all.count %>
-      <div id="demo">
-        <div class="container">
-          <div class="row">
-            <div class="span12">
-              <h1>Now Playing</h1>
-            </div>
-          </div>
-          <div class="row">
-            <div class="span12">
-              <div id="owl-demo" class="owl-carousel">
-                <% Movie.all.each do |movie| %>
-                <div class="item">
-                  <%= link_to movie_path(movie) do %>
-                    <%= image_tag(movie.poster_image, class: 'lazyOwl') %>
-                  <% end %>
-                </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

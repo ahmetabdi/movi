@@ -1,0 +1,25 @@
+
+
+<div class="background-container">
+  <div style="background-image: url(<%= image_path(@movie.poster_image) %>);" class="background">
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-3 main">
+      <div class="poster" style="">
+        <img src="<%= @movie.poster_image %>" class="img-fluid">
+      </div>
+      <h1 style="font-size: 17px; padding: 2px;"><%= @movie.title %></h1>
+      <h2 style="font-size: 17px; padding: 2px;">Rating: <%= @movie.rating %></h2>
+    </div>
+    <div class="col-sm-9 col-md-9 main">
+      <% @movie.movie_links.each do |movie_link| %>
+        <div class="flex-video">
+          <iframe src="<%= movie_link.link %>" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" frameborder="0" height="281" width="500"></iframe>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
