@@ -17,6 +17,8 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave-aws', '~> 1.0.1'
 gem 'mini_magick', '~> 4.5.1'
 gem 'friendly_id', '~> 5.1.0'
+gem 'imdb', github: 'ahmetabdi/imdb'
+gem 'themoviedb-api', '~> 1.0.4'
 
 group :development, :test do
   gem 'byebug', platform: :mri

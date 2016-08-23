@@ -4,8 +4,8 @@ require 'nokogiri'
 
 class MovieNight
   def self.run
-    # MovieLink.destroy_all
-    # Movie.destroy_all
+    MovieLink.destroy_all
+    Movie.destroy_all
 
     find_by_url("http://movienight.ws/")
     2.upto(52).each do |i|
@@ -22,7 +22,7 @@ class MovieNight
 
   def self.fetch(movies)
     movies.each do |movie|
-      title = movie.at_css('img')['alt']
+      # title = movie.at_css('img')['alt']
       image_url = movie.at_css('img')['src']
       url_location = movie.at_css('a')['href']
       rating = if imdb = movie.at_css('.imdb')
@@ -34,9 +34,14 @@ class MovieNight
       detail_html = Net::HTTP.get(URI(url_location))
       detail_html_doc = Nokogiri::HTML(detail_html)
 
-      puts detail_html_doc.inspect
+      title_text = detail_html_doc.at_css('.headingder .dataplus h1').text
+      title_match = title_text.match(%r{(.*?)\s*[.\[(]?(\d{4})[.)\]]?\s*})
 
-      title = detail_html_doc.at_css('.headingder .dataplus h1').text
+      if title_match
+        title = title_match[1]
+        year = title_match[2]
+      end
+
       iframe_url = if iframe = detail_html_doc.at_css('iframe')
         iframe['src']
       else
@@ -46,7 +51,8 @@ class MovieNight
       # Only continue if the movie has an iframe and a title
       if title && iframe_url
         if Movie.find_by_title(title).nil?
-          Movie.create(title: title, remote_poster_image_url: image_url, url_location: url_location, rating: rating)
+          p title
+          Movie.create(title: title, year: year, remote_poster_image_url: image_url, url_location: url_location, rating: rating)
         end
 
         if MovieLink.find_by_link(iframe_url).nil?
