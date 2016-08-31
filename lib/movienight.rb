@@ -1,6 +1,7 @@
 require 'uri'
 require 'net/http'
 require 'nokogiri'
+require 'meta_grabber'
 
 class MovieNight
   def self.run
@@ -52,7 +53,8 @@ class MovieNight
       if title && iframe_url
         if Movie.find_by_title(title).nil?
           p title
-          Movie.create(title: title, year: year, remote_poster_image_url: image_url, url_location: url_location, rating: rating)
+          m = Movie.create(title: title, year: year, remote_poster_image_url: image_url, url_location: url_location, rating: rating)
+          MetaGrabber.run(m)
         end
 
         if MovieLink.find_by_link(iframe_url).nil?

@@ -1,8 +1,9 @@
-
-
 <div class="background-container">
-  <div style="background-image: url(<%= image_path(@movie.poster_image) %>);" class="background">
-  </div>
+  <% if @movie.backdrop_image.file %>
+    <div style="background-image: url(<%= image_path(@movie.backdrop_image) %>);" class="background"></div>
+  <% else %>
+    <div style="background-image: url(<%= image_path(@movie.poster_image) %>);" class="background"></div>
+  <% end %>
 </div>
 
 <div class="container-fluid">
@@ -12,7 +13,15 @@
         <img src="<%= @movie.poster_image %>" class="img-fluid">
       </div>
       <h1 style="font-size: 17px; padding: 2px;"><%= @movie.title %></h1>
-      <h2 style="font-size: 17px; padding: 2px;">Rating: <%= @movie.rating %></h2>
+      <% if @movie.rating %>
+        <p style="font-size: 12px; padding: 2px;">IMDB Rating: <%= @movie.rating %></p>
+      <% end %>
+      <% if @movie.release_date %>
+        <p style="font-size: 12px; padding: 2px;"><%= @movie.release_date.strftime("#{@movie.release_date.day.ordinalize} %B %Y") %></p>
+      <% end %>
+      <% if @movie.overview %>
+        <p style="font-size: 12px; padding: 2px;"><%= @movie.overview %></p>
+      <% end %>
     </div>
     <div class="col-sm-9 col-md-9 main">
       <% @movie.movie_links.each do |movie_link| %>
