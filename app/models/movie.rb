@@ -1,6 +1,7 @@
 class Movie < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
+  searchkick match: :word_start, searchable: [:title]
 
   mount_uploader :poster_image, MoviePosterImageUploader
   mount_uploader :backdrop_image, MovieBackdropImageUploader

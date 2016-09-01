@@ -19,6 +19,7 @@ gem 'mini_magick', '~> 4.5.1'
 gem 'friendly_id', '~> 5.1.0'
 gem 'imdb', github: 'ahmetabdi/imdb'
 gem 'themoviedb-api', '~> 1.0.4'
+gem 'searchkick', '~> 1.3.4'
 gem 'newrelic_rpm'
 
 group :development, :test do
