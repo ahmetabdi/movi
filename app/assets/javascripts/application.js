@@ -17,12 +17,17 @@
 //= require_tree .
 
 $(document).ready(function() {
-  $("#owl-demo").owlCarousel({
-    items : 8,
-    lazyLoad : true,
-    navigation : false,
-    pagination: false,
-    paginationNumbers: true
+  // $("#owl-demo").owlCarousel({
+  //   items : 8,
+  //   lazyLoad : true,
+  //   navigation : false,
+  //   pagination: false,
+  //   paginationNumbers: true
+  // });
+
+  $("#query").typeahead({
+    name: "movie",
+    remote: "/movies/autocomplete?query=%QUERY"
   });
 
   // $('iframe').iFrameResize( [{options}] );
